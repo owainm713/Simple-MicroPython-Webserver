@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+    <html>
+        <head>
+            <meta charset="UTF-8">
+            <title>Pi Pico W HTML Page</title>
+            
+            <!- add link to external css style sheet -->
+            <link rel="stylesheet" href="exampleCSS.css">
+
+                       
+        </head>
+
+        <body>
+            <p>Connected IPs: {callingIP}</p>            
+            
+            <script type="text/javascript">
+                document.write("This was written with inline JavaScript!");
+            </script>
+            
+            <!- LED1 toggle button presses will be handled via Java Script code -->            
+            <p>LED1 Toggle Button</p>
+            <p><button type="submit" name='ledToggle'id="ledToggle" value="auto" >ON/OFF</button></p>
+            <div id="LEDStatusArea">
+                <p class = 'ledStatus'>LED Status: {LEDStatus}</p>
+            </div>
+            
+            <!- LED2 status updates will be handled via a http POST request (i.e. no java script) -->             
+            <form action="/StatusLEDControl" method = "post" id="blinkStatus" style="font-size:1.5em;">
+                <p>Status LED2: <input type="radio" id="blinkon" name="blinkStatus" value="ON" {blinkCheckedOn}>ON
+                <input type="radio" id="blinkoff" name="blinkStatus" value="OFF" {blinkCheckedOff}>OFF             
+                </p>                
+                <button type="submit">Submit</button>
+                <button type="reset">Reset</button>
+            </form>
+   
+            <p><a href="/">Refresh Page</a></p>
+            
+            <br><p>loading js file</p>
+            <script type="text/javascript" src="exampleJS.js"></script>
+        </body>
+    </html>
