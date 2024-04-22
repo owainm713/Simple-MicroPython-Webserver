@@ -102,7 +102,7 @@ def error_page(reader, writer, file, errorPath):
     response = "HTTP/1.0 404 PAGE NOT FOUND\r\nServer: uPython on Pi Pico W\r\n\content-Type: text/html\r\n\r\n"
     errorText = "PAGE NOT FOUND: " + errorPath 
         
-    webserver.load_file(reader, writer, file, error="404", errorText=errorText)
+    webserver.load_file(reader, writer, file, response, error="404", errorText=errorText)
             
     return
     

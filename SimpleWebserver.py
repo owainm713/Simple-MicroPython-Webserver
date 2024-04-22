@@ -142,7 +142,7 @@ class WebServer:
                     # check for v in global variables 
                     if v not in globals():
                         # v not found
-                        print(f"Variable {v} not found")                                       
+                        self.print_message(f"Variable {v} not found")                                       
                     html = html.replace("{" + v + "}", globals().get(v, "{" + v + "}"))                
                 startIndex = startIndex + m.end()                
             else:
