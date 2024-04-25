@@ -2,7 +2,8 @@
 micropython module
 
 created Apr 21, 2024
-modified Apr 21, 2024"""
+modified Apr 21, 2024
+modified Apr 25, 2024 - set up wifi changes, toggle_led funct changes"""
 
 """
 Copyright 2024 Owain Martin
@@ -28,6 +29,7 @@ import utime as time
 import re
 import json
 import SimpleWebserver
+#import SimpleWebserver-TinyPico as SimpleWebserver
 
 def setup_wifi(ssid, passwd = None):
     
@@ -45,13 +47,13 @@ def setup_wifi(ssid, passwd = None):
         print('Connecting.', end = '')
         maxWait = 10
         while maxWait > 0:
-            if wlan.status() < 0 or wlan.status() >= 3:
+            if wlan.isconnected():
                 break
             maxWait -= 1
             print('.', end = '')
             time.sleep(1)
         
-    if wlan.status() != 3:
+    if not wlan.isconnected():
         raise RuntimeError('network conection failed')
     else:
         onboard_led.value(1)
@@ -64,7 +66,7 @@ def setup_wifi(ssid, passwd = None):
 def disconnect_wifi():
     
     wlan.disconnect()
-    while wlan.status() == 3:
+    while wlan.isconnected():
         time.sleep(0.5)
     onboard_led.value(0)
     print('Disconnected ' + str(wlan.status()))
@@ -118,11 +120,12 @@ def toggle_led(reader, writer, postData = None):
     data = json.loads(postData) 
     print(f"data['mode']: {data['mode']}")
     print("Toggle LED via toggle_led function")
-    led1.toggle()
     if led1.value() == 1:
-        LEDStatus = "ON"
-    else:
         LEDStatus = "OFF"
+        led1.value(0)
+    else:
+        LEDStatus = "ON"
+        led1.value(1)
     xmlResponse = json.dumps({'buttonUpdate':'true','LEDStatus':LEDStatus}, separators=(',',':'))
     writer.write(response)
     writer.write(xmlResponse)
@@ -163,8 +166,8 @@ led1.value(0)
 led2 = machine.Pin(19, machine.Pin.OUT)
 led2.value(0)    
     
-ssid = "YourWifiName" # change to the SSID of the wifi network you want to connect to
-passwd = "YourWifiPassword" # change to the wifi password, if None you will be prompted to enter one
+ssid = "yourwifiname" # change to the SSID of the wifi network you want to connect to
+passwd = "yourwifipassword" # change to the wifi password, if None you will be prompted to enter one
 LEDStatus = "OFF"
 blinkStatus = "ON"   
     

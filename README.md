@@ -13,5 +13,11 @@ you will need to change the SSID and passwd fields to connect to your wifi.
 For the example, also connect 2 LEDs (with current limiting resistors) to your microcontroller,
 I used pins 19 and 20 on my Pi Pico W.
 
+Apr 25, 2024
+Made small change to wifi connect/disconnect functions, changed toggle _led function not
+to use led.toggle() funct as not all ports of micropython include it
+Added second version of SimpleWebserver.py called SimpleVersionTinyPico.py that works
+with the ESP32 based Tiny Pico (micropython specific port required changes to regex use)
+
 Created Apr 21, 2024
-Modified Apr 21, 2024
+Modified Apr 25, 2024
