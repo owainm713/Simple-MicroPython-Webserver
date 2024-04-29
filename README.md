@@ -14,10 +14,15 @@ For the example, also connect 2 LEDs (with current limiting resistors) to your m
 I used pins 19 and 20 on my Pi Pico W.
 
 Apr 25, 2024
+
 Made small change to wifi connect/disconnect functions, changed toggle _led function not
 to use led.toggle() funct as not all ports of micropython include it
-Added second version of SimpleWebserver.py called SimpleVersionTinyPico.py that works
+
+Added second version of SimpleWebserver.py called SimpleWebserverTinyPico.py that works
 with the ESP32 based Tiny Pico (micropython specific port required changes to regex use)
 
 Created Apr 21, 2024
+
 Modified Apr 25, 2024
+
+Modified Apr 29, 2024

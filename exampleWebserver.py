@@ -3,7 +3,8 @@ micropython module
 
 created Apr 21, 2024
 modified Apr 21, 2024
-modified Apr 25, 2024 - set up wifi changes, toggle_led funct changes"""
+modified Apr 25, 2024 - set up wifi changes, toggle_led funct changes
+modified Apr 29, 2024 - typo correction in import statement"""
 
 """
 Copyright 2024 Owain Martin
@@ -29,7 +30,7 @@ import utime as time
 import re
 import json
 import SimpleWebserver
-#import SimpleWebserver-TinyPico as SimpleWebserver
+#import SimpleWebserverTinyPico as SimpleWebserver
 
 def setup_wifi(ssid, passwd = None):
     
